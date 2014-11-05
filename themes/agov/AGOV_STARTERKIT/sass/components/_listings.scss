@@ -4,7 +4,7 @@
   border-top: solid 1px $color-tertiary-light;
   &:last-child {  border-bottom: none; }
   p {
-    @include noSpace;
+    @include no-space;
   }
 }
 

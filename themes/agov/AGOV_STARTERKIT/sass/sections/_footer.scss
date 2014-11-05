@@ -60,7 +60,7 @@ footer .block {
         @include reset-baseline;
       }
       a {
-        @include underlineOnHover;
+        @include underline-on-hover;
       }
     }
   }
@@ -78,7 +78,7 @@ footer .block {
   a { color: $color-highlight-contrast; }
 
   .menu-block-wrapper > ul {
-    @include noSpace;
+    @include no-space;
     > li {
       float: left;
       padding-right: rhythm(1);

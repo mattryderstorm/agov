@@ -6,8 +6,8 @@
   padding: 7px;
   @include bp-nq($medium) { padding: 0px; }
   .block {
-    @include noSpace;
-    @include adaptivelyCentered;
+    @include no-space;
+    @include adaptively-centered;
   }
 }
 

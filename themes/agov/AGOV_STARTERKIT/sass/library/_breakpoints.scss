@@ -13,7 +13,8 @@
 }
 
 @mixin small-screens() {
-  @include breakpoint(($medium - 1px) max-width) { // subtract 1px to max-width consistent with 1px
+  // subtract 1px to max-width consistent with 1px
+  @include breakpoint(($medium - 1px) max-width) {
     @content
   }
 }

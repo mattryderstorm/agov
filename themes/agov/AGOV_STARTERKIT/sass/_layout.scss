@@ -1,12 +1,6 @@
-@mixin adaptivelyCentered {
-  margin: auto;
-  @include bp-nq($medium) { max-width: $medium; }
-  @include bp-nq($large) { max-width: $large - 20px; }
-}
-
 #page,
 .region-bottom {
-  @include adaptivelyCentered;
+  @include adaptively-centered;
 }
 
 #main {
@@ -24,7 +18,7 @@
   }
 }
 
-.header__inner { @include adaptivelyCentered; }
+.header__inner { @include adaptively-centered; }
 
 /*
 * Column logic.

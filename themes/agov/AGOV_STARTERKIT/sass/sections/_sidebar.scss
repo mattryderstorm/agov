@@ -12,7 +12,7 @@
       padding: 15px;
     }
     .menu, p {
-      @include noSpace;
+      @include no-space;
     }
   }
 }

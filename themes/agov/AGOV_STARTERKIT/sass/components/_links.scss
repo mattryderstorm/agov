@@ -36,7 +36,8 @@
   @extend %inlineLinks;
   > li > a {
     &:before {
-      @extend %pseudo-block;
+      content: '';
+      display: block;
       border-left: solid 1px $color-tertiary-dark;
       height: 60%;
       top: 20%;
