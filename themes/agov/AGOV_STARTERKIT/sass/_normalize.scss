@@ -43,7 +43,7 @@ audio,
 canvas,
 video {
   display: inline-block;
-  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
+  @if support-legacy-browser(ie, "7") {
     *display: inline;
     *zoom: 1;
   }
@@ -129,7 +129,7 @@ html {
   height: 100%
 }
 
-@if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
+@if support-legacy-browser(ie, "7") {
 /**
  * Address `font-family` inconsistency between `textarea` and other form
  * elements in IE 6/7.
@@ -273,7 +273,7 @@ samp,
 tt,
 var {
   font-family: $font-monospace; // The value of $font-monospace ends with ", serif".
-  @if $legacy-support-for-ie6 {
+  @if support-legacy-browser(ie, "6") {
     _font-family: 'courier new', monospace;
   }
   @include adjust-font-size-to( 1 * $base-font-size );
@@ -354,7 +354,7 @@ dd {
   margin: 0 0 0 30px; /* LTR */
 }
 
-@if $legacy-support-for-ie7 {
+@if support-legacy-browser(ie, "7") {
 /**
  * Correct list images handled incorrectly in IE 7.
  */
@@ -376,7 +376,7 @@ dd {
 
 img {
   border: 0;
-  @if $legacy-support-for-ie7 {
+  @if support-legacy-browser(ie, "7") {
   /* Improve image quality when scaled in IE 7. */
     -ms-interpolation-mode: bicubic;
   }
@@ -388,7 +388,7 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
-  @if $legacy-support-for-ie8 {
+  @if support-legacy-browser(ie, "8") {
     width: auto; /* Correct IE 8 not scaling image height when resized. */
   }
 }
@@ -417,7 +417,7 @@ figure {
    Forms
    ========================================================================== */
 
-@if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
+@if support-legacy-browser(ie, "7") {
 /**
  * Correct margin displayed oddly in IE 6/7.
  */
@@ -450,7 +450,7 @@ fieldset {
 legend {
   border: 0; /* 1 */
   padding: 0; /* 2 */
-  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
+  @if support-legacy-browser(ie, "7") {
     *margin-left: -7px; /* 3 */ /* LTR */
   }
 }
@@ -469,7 +469,7 @@ textarea {
   font-family: inherit; /* 1 */
   font-size: 100%; /* 2 */
   margin: 0; /* 3 */
-  @if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
+  @if support-legacy-browser(ie, "7") {
     vertical-align: baseline; /* 4 */
     *vertical-align: middle; /* 4 */
   }
@@ -514,7 +514,7 @@ input[type="submit"] {
   -webkit-appearance: button; /* 2 */
   cursor: pointer; /* 3 */
   border: none;
-  @if $legacy-support-for-ie7 {
+  @if support-legacy-browser(ie, "7") {
     *overflow: visible; /* 4 */
   }
 }
@@ -538,7 +538,7 @@ html input[disabled] {
 input[type="checkbox"],
 input[type="radio"] {
   padding: 0; /* 2 */
-  @if $legacy-support-for-ie7 {
+  @if support-legacy-browser(ie, "7") {
     *height: 13px; /* 3 */
     *width: 13px; /* 3 */
   }

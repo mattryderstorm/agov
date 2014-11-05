@@ -1,6 +1,19 @@
-$legacy-support-for-ie6: false;
-$legacy-support-for-ie7: false;
-$legacy-support-for-ie8: true;
+// The browser usage threshold for Compass. Defaults to 1 user in 10,000.
+$critical-usage-threshold: 0.3;
+
+// Set this to true to generate comments that will explain why a prefix was
+// included or omitted.
+$debug-browser-support: false;
+
+// Optional map of minimum browser versions to support. For example, to require
+// support for IE 8 and later, set $browser-minimum-versions['ie'] to '8'.
+$browser-minimum-versions: (
+  'chrome':  null,
+  'firefox': null,
+  'ie':      null,
+  'safari':  null,
+  'opera':   null
+);
 
 
 $arial:             Arial, sans-serif;
@@ -40,7 +53,7 @@ $tabs-border: #bbb;
 @import "breakpoint";
 
 // Add the Zen Grids responsive layout mixins.
-@import "zen";
+@import "zen-grids";
 
 // Now we add our custom helper mixins.
 @import "mixins";
