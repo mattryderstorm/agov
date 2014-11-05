@@ -21,7 +21,7 @@
   }
 }
 
-@mixin search-form {
+%search-form {
   @include pie-clearfix;
   padding: 15px;
   background-color: $color-tertiary-light;
@@ -43,7 +43,7 @@
 }
 
 .search-form {
-  @include search-form();
+  @extend %search-form;
 
   .form-text {
     float: left;
@@ -62,7 +62,7 @@
 }
 
 .view-search form {
-  @include search-form();
+  @extend %search-form;
 
   label {
     margin-top: 5px;
