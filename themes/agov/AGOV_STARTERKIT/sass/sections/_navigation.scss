@@ -11,9 +11,6 @@
   }
 }
 
-// Used for calculation is sub-menu below.
-$firstLiPaddingX: 15px;
-
 /* First-level Menu */
 .region-navigation .block__content > .menu {
   @extend %inlineLinks--bordered;
@@ -48,9 +45,6 @@ $firstLiPaddingX: 15px;
 }
 
 /* Sub-menu */
-$subMenuPadding: 3px;
-$subLiPaddingX: $firstLiPaddingX - $subMenuPadding;
-
 .sf-menu > li > ul {
   background: $color-tertiary-light;
   padding: $subMenuPadding;

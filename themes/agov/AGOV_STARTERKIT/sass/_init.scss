@@ -1,46 +1,22 @@
-// The browser usage threshold for Compass. Defaults to 1 user in 10,000.
-$critical-usage-threshold: 0.3;
-
-// Set this to true to generate comments that will explain why a prefix was
-// included or omitted.
-$debug-browser-support: false;
-
-// Optional map of minimum browser versions to support. For example, to require
-// support for IE 8 and later, set $browser-minimum-versions['ie'] to '8'.
-$browser-minimum-versions: (
-  'chrome':  null,
-  'firefox': null,
-  'ie':      null,
-  'safari':  null,
-  'opera':   null
-);
+//
+// Initialization partial
+//
+// To make it easier to use all variables and mixins in any Sass file in this
+// theme, each .scss file has a @import "init" declaration. And this _init.scss
+// file is in charge of importing all the other partials needed for the theme.
+//
+// This initialization partial is organized in this way:
+// - First we set any shared Sass variables.
+// - Next we import Compass plug-ins (Sass mixin libraries).
+// - Last we define our custom mixins for this theme.
+//
 
 
-$arial:             Arial, sans-serif;
-$base-font-family:  $arial; // The font family set on the html element.
+// Import our variables.
+//
+// Allows us to set variables before a library sets its !default value.
+@import "variables";
 
-$open:            'OpenSansRegular', $base-font-family;
-$open-semibold:   'OpenSansSemibold', $base-font-family;
-
-$header-font-family:  $open-semibold;
-$font-body:           $arial;
-$font-monospace:      sans-serif;
-
-$line-height-ratio: 1.4;
-$base-font-size:    13px; // The font size set on the root html element.
-$base-line-height:  $base-font-size * $line-height-ratio; // This line-height determines the basic unit of vertical rhythm.
-$heading-line-height: $line-height-ratio;
-
-$h1-font-size:      $base-font-size * 2.4;
-$h2-font-size:      $h1-font-size * 0.7;
-$h3-font-size:      $h1-font-size * 0.6;
-$h4-font-size:      $h1-font-size * 0.5;
-
-
-
-// Tab styling.
-$tabs-container-bg: #fff;
-$tabs-border: #bbb;
 
 // =============================================================================
 // Partials to be shared with all .scss files.
@@ -48,10 +24,8 @@ $tabs-border: #bbb;
 
 // Add Compass.
 @import "compass";
-
 // Add Breakpoint.
 @import "breakpoint";
-
 // Add the Zen Grids responsive layout mixins.
 @import "zen-grids";
 

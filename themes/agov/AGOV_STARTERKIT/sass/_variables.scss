@@ -1,0 +1,111 @@
+// =============================================================================
+// Variables
+// =============================================================================
+
+
+//
+// Browser support
+//
+
+// The browser usage threshold for Compass. Defaults to 1 user in 10,000.
+$critical-usage-threshold: 0.3;
+
+// Set this to true to generate comments that will explain why a prefix was
+// included or omitted.
+$debug-browser-support: false;
+
+// Optional map of minimum browser versions to support. For example, to require
+// support for IE 8 and later, set $browser-minimum-versions['ie'] to '8'.
+$browser-minimum-versions: (
+  'chrome':  null,
+  'firefox': null,
+  'ie':      null,
+  'safari':  null,
+  'opera':   null
+);
+
+//
+// Font faces, stacks and sizes.
+//
+
+$arial:             Arial, sans-serif;
+$base-font-family:  $arial; // The font family set on the html element.
+
+$open:            'OpenSansRegular', $base-font-family;
+$open-semibold:   'OpenSansSemibold', $base-font-family;
+
+$header-font-family:  $open-semibold;
+$font-body:           $arial;
+$font-monospace:      sans-serif;
+
+
+$base-font-size:    13px; // The font size set on the root html element.
+$base-line-height:  $base-font-size * 1.4; // This line-height determines the basic unit of vertical rhythm.
+
+$h1-font-size:      $base-font-size * 2.4;
+$h2-font-size:      $h1-font-size * 0.7;
+$h3-font-size:      $h1-font-size * 0.6;
+$h4-font-size:      $h1-font-size * 0.5;
+$heading-lines:     1.4;
+
+//
+// Colors
+//
+
+// Primary branding colour.
+$color-primary: #7A797A;
+$color-primary-contrast: #FFF;
+
+// Highlight colour.
+$color-highlight: #464445;
+$color-highlight-contrast: #FFF;
+
+// Tertiary colours are used for borders and highlights requiring a neutral
+// colour.
+$color-tertiary-light: #f3f3f3;
+$color-tertiary-dark: #616161;
+
+// Colours of header and footer areas.
+$color-header: #FFF;
+$color-footer: $color-primary;
+
+// Text colours.
+$heading-color: darken($color-primary, 40%);
+$body-text: #5f5f5f;
+$body-text2: #444444;
+
+// Form colours.
+$form-border: #c0c0c0;
+$form-background: #FDFDFD;
+
+// Maintenance colours.
+$maintenance_primary: #006893;
+
+//
+// Breakpoints
+//
+
+$breakpoint-no-queries: false;
+$breakpoint-no-query-fallbacks: true;
+
+$minor:  420px;
+$medium: 720px;
+$large:  980px;
+
+//
+// Misc
+//
+
+// Tab styling.
+$tabs-container-bg: #fff;
+$tabs-border: #bbb;
+
+// These variables keep form elements the same height.
+$inputHeight: 25px;
+$inputVPadding: 2px;
+$borderWidth: 1px;
+
+// Navigation
+$firstLiPaddingX: 15px;
+$subMenuPadding: 3px;
+$subLiPaddingX: $firstLiPaddingX - $subMenuPadding;
