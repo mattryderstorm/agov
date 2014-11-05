@@ -47,6 +47,8 @@ base theme  = agov_zen
 stylesheets[all][] = system.menus.css
 stylesheets[all][] = system.messages.css
 stylesheets[all][] = system.theme.css
+; Remove the agov_zen base theme styles.
+stylesheets[all][] = agov_zen.css
 
 ; Then we add our own stylesheet.
 stylesheets[all][] = css/styles.css
