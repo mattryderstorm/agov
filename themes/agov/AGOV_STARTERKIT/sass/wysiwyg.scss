@@ -1,6 +1,6 @@
 @import "init";
-@import "fonts";
-@import "typography";
+@import "base/fonts";
+@import "base/typography";
 // Declare a mixin to provide raw styles for wysiwyg.
 
 @include body-text-syles;

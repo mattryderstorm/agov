@@ -8,16 +8,12 @@
 
 /* Import Sass mixins, variables, Compass modules, etc. */
 @import "init";
-@import "fonts";
 
 /* HTML element (SMACSS base) rules */
-@import "normalize";
+@import "base/*";
 
 /* Layout rules */
 @import "layout";
-
-/* Typographic rules */
-@import "typography";
 
 /* Global form elements */
 @import "forms";
