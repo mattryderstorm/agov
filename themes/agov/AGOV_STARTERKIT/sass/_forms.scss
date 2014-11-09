@@ -83,26 +83,6 @@ label.option {
   font-weight: normal;
 }
 
-fieldset {
-  margin-bottom: 1em;
-  background: $form-background;
-
-  legend {
-    background: #fff;
-    color: rgb(75, 75, 75);
-    border-radius: 0;
-    border: 1px solid $form-border;
-    padding: 0 5px;
-
-    a,
-    a:visited,
-    a:active,
-    a:hover {
-      color: rgb(75, 75, 75);
-    }
-  }
-}
-
 /**
  * Collapsible fieldsets.
  *
