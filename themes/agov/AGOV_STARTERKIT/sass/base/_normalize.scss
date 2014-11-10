@@ -47,6 +47,8 @@ html {
 body {
   margin: 0;
   padding: 0;
+  background: $color-tertiary-light;
+  color: $body-text;
 }
 
 /* HTML5 display definitions
@@ -496,11 +498,12 @@ textarea {
   //@include box-sizing(border-box); /* 6 */
 }
 
-/**
- * Address `overflow` set to `hidden` in IE 8/9/10/11.
- */
-
 button {
+  text-align: center;
+  border: none;
+  padding: 0 15px;
+  height: $inputHeight;
+  /* Address `overflow` set to `hidden` in IE 8/9/10/11. */
   overflow: visible;
 }
 
@@ -701,7 +704,15 @@ table {
   @include trailer(1);
 }
 
-td,
-th {
+td {
   padding: 0;
+}
+
+th {
+  padding: 5px;
+
+  a,
+  img {
+    display: inline-block;
+  }
 }

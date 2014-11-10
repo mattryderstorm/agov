@@ -16,14 +16,6 @@
   }
 }
 
-input .form-submit,
-button {
-  text-align: center;
-  border: none;
-  padding: 0 15px;
-  height: $inputHeight;
-}
-
 .form-submit {
   @include standard-button;
 }
