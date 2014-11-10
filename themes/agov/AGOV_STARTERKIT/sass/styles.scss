@@ -20,8 +20,3 @@
 
 // Sections - This is where section specific non-modular styles go. You will not find yourself duplicating these styles.
 @import "sections/*";
-
-/* Customized third-party CSS */
-// Loaded last because TinyNav needs to happen last.
-// Todo: pull out tinynav state and place in states. Then place vendor stuff first.
-@import "vendor/*";
