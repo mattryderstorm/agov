@@ -9,6 +9,8 @@
   text-align: center;
   border-top: solid 3px $color-primary;
   background: lighten($color-tertiary-light, 3%);
+
+  @include print-none();
 }
 %pager__item {
   display: inline-block;

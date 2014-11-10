@@ -49,3 +49,6 @@
   }
 }
 
+.tabs {
+  @include print-none();
+}

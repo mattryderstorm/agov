@@ -2,4 +2,9 @@
   background: white;
   @include box-shadow(0 0 15px 5px grey);
   margin-top: -5px;
+
+  @media print {
+    background: transparent;
+    @include box-shadow(none);
+  }
 }

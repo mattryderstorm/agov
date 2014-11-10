@@ -10,6 +10,8 @@
 
 #footer {
   clear: both;
+
+  @include print-none();
 }
 
 .header {
@@ -29,7 +31,16 @@
     float: left;
     width: 490px;
   }
-  @include bp-nq($large) { width: 660px; }
+  @include bp-nq($large) {
+    width: 660px;
+  }
+
+  @media print {
+    /* Un-float the content. */
+    float: none;
+    width: 100%;
+    padding: 0;
+  }
 }
 
 .region-sidebar-second {
@@ -39,5 +50,9 @@
     float: right;
     width: 230px;
   }
-  @include bp-nq($large) { width: 300px; }
+  @include bp-nq($large) {
+    width: 300px;
+  }
+
+  @include print-none();
 }

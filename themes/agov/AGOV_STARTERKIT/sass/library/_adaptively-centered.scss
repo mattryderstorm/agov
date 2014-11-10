@@ -1,5 +1,16 @@
 @mixin adaptively-centered {
-  margin: auto;
-  @include bp-nq($medium) { max-width: $medium; }
-  @include bp-nq($large) { max-width: $large - 20px; }
+  margin: {
+    left: auto;
+    right: auto;
+  }
+
+  @include bp-nq($medium) {
+    max-width: $medium;
+  }
+  @include bp-nq($large) {
+    max-width: $large - 20px;
+  }
+  @media print {
+    max-width: 100%;
+  }
 }

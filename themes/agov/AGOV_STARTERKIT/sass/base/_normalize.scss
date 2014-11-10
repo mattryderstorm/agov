@@ -49,6 +49,11 @@ body {
   padding: 0;
   background: $color-tertiary-light;
   color: $body-text;
+
+  @media print {
+    color: #000;
+    background: transparent;
+  }
 }
 
 /* HTML5 display definitions
@@ -135,6 +140,11 @@ template {
 a:link,
 a:visited {
   color: $color-highlight;
+
+  @media print {
+    /* Underline all links. */
+    text-decoration: underline;
+  }
 }
 
 a:hover,

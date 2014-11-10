@@ -71,6 +71,8 @@
     background-color: #666;
     color: #fff;
   }
+
+  @include print-none();
 }
 
 /**
