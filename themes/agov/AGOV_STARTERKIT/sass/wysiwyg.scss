@@ -1,19 +1,8 @@
+/* Import Sass mixins, variables, Compass modules, etc. */
 @import "init";
-@import "base/fonts";
-@import "base/typography";
-// Declare a mixin to provide raw styles for wysiwyg.
 
-@include body-text-syles;
+/* HTML element (SMACSS base) rules */
+@import "base/*";
 
-html {
-  font-family: $base-font-family; /* 1 */
-  font-size: 100% * ($base-font-size / 16px); /* 3 */
-  -webkit-text-size-adjust: 100%; /* 2 */
-  -ms-text-size-adjust: 100%; /* 2 */
-  // Establish a vertical rhythm unit using $base-line-height.
-  @include adjust-leading-to(1);
-
-  word-spacing: -0.05em;
-}
-
-ul, ol { margin: rhythm(1) 0; }
+/* Component (SMACSS module) rules */
+@import "components/img-float";

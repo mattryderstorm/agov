@@ -322,6 +322,15 @@ ul {
   @include output-rhythm(margin, rhythm(0.5) 0);
 }
 
+/* Content List Styles */
+ol {
+  list-style-type: decimal;
+}
+
+ul {
+  list-style-type: square;
+}
+
 /**
  * Turn off margins on nested lists.
  */
@@ -343,9 +352,12 @@ dd {
  */
 
 menu,
-ol,
 ul {
-  padding: 0 0 0 $indent-amount;
+  padding: 0 0 0 15px;
+}
+
+ol {
+  padding: 0 0 0 19px;
 }
 
 @if support-legacy-browser(ie, "7") {

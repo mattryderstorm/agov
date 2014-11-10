@@ -1,0 +1,23 @@
+/* Display image inline to the left */
+%img-float--left {
+  float: left;
+  margin: 0 5px 5px 5px;
+}
+
+/* Display image inline to the right */
+%img-float--right {
+  float: right;
+  margin: 5px 0 5px 5px;
+}
+
+
+// Fugly selectors.
+p.img-float-left,
+img.img-float-left {
+  @extend %img-float--left;
+}
+
+p.img-float-right,
+img.img-float-right {
+  @extend %img-float--right;
+}
