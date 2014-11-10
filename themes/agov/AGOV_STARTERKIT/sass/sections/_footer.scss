@@ -78,7 +78,7 @@ footer .block {
   a { color: $color-highlight-contrast; }
 
   .menu-block-wrapper > ul {
-    @include no-space;
+    @include rhythm-off();
     > li {
       float: left;
       padding-right: rhythm(1);

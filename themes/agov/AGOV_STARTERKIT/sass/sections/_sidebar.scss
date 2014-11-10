@@ -11,8 +11,8 @@
       background: $color-tertiary-light;
       padding: 15px;
     }
-    .menu, p {
-      @include no-space;
+    p {
+      @include rhythm-off();
     }
   }
 }
@@ -30,12 +30,8 @@
 
 /* Sidebar Menus */
 
-.sidebar .block // Extra selectors added to override reset via cascade.
 .menu-block-agov_menu_block-sidebar .menu {
   margin: -15px; //ignore parent spacing
-}
-
-.menu-block-agov_menu_block-sidebar .menu {
   @extend %linksDoubleArrow;
   a { background-position: 15px center; }
   @extend %linksTabbed;

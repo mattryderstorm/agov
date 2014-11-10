@@ -67,7 +67,7 @@
     position: relative;
   }
   .field-name-title h2 {
-    @include no-space;
+    @include rhythm-off();
   }
   .field-name-body {
     p { margin: rhythm(.5) 0; }

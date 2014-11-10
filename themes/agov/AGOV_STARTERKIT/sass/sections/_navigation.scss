@@ -12,7 +12,8 @@
   @include print-none();
 
   .block {
-    @include no-space;
+    margin: 0;
+    padding: 0;
     @include adaptively-centered;
   }
 }
