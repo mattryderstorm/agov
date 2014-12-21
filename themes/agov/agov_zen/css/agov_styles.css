@@ -1658,9 +1658,9 @@ form#sweaver-frontend > div {
 }
 
 .entity-paragraphs-item {
-  padding: 0.7em;
   box-sizing: border-box;
   width: 100%;
+  margin-bottom: 0.7em;
 }
 .entity-paragraphs-item h1, .entity-paragraphs-item h2, .entity-paragraphs-item h3, .entity-paragraphs-item h4, .entity-paragraphs-item h5, .entity-paragraphs-item h6 {
   margin-top: 0.14em;
@@ -1673,12 +1673,13 @@ form#sweaver-frontend > div {
 
 .paragraphs-item_view-mode_tile-text,
 .paragraphs-item_view-mode_tile-image {
-  padding: 0.7em;
   box-sizing: border-box;
   width: 100%;
-  padding: 0.7em;
+  margin-bottom: 0.7em;
   box-sizing: border-box;
   width: 100%;
+  margin-bottom: 0.7em;
+  padding: 0.7em;
   float: left;
   border: 1px solid #ddd;
   margin-left: 0.7em;
@@ -1739,9 +1740,10 @@ form#sweaver-frontend > div {
 }
 
 .paragraphs--layout-tiles-2 > .field > .field-items > .field-item {
-  padding: 0.7em;
   box-sizing: border-box;
   width: 100%;
+  margin-bottom: 0.7em;
+  padding: 0.7em;
   float: left;
   border: 1px solid #ddd;
   margin-left: 0.7em;
@@ -1780,9 +1782,10 @@ form#sweaver-frontend > div {
 }
 
 .paragraphs--layout-tiles-3 > .field > .field-items > .field-item {
-  padding: 0.7em;
   box-sizing: border-box;
   width: 100%;
+  margin-bottom: 0.7em;
+  padding: 0.7em;
   float: left;
   border: 1px solid #ddd;
   margin-left: 0.7em;
@@ -1853,9 +1856,10 @@ form#sweaver-frontend > div {
 }
 
 .paragraphs--layout-tiles-4 > .field > .field-items > .field-item {
-  padding: 0.7em;
   box-sizing: border-box;
   width: 100%;
+  margin-bottom: 0.7em;
+  padding: 0.7em;
   float: left;
   border: 1px solid #ddd;
   margin-left: 0.7em;

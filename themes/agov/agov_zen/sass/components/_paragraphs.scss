@@ -1,12 +1,13 @@
 @mixin paragraph-base {
-  padding: rhythm(0.5);
   box-sizing: border-box;
   width: 100%;
+  margin-bottom: rhythm(0.5);
 }
 
 @mixin paragraph-tile {
   @include paragraph-base;
 
+  padding: rhythm(0.5);
   float: left;
   border: 1px solid #ddd;
   margin-left: rhythm(0.5);
