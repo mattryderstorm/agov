@@ -1,0 +1,386 @@
+{
+  "vid": "51",
+  "uid": "1",
+  "title": "News and Media",
+  "log": "Edited by admin.",
+  "status": "1",
+  "comment": "1",
+  "promote": "0",
+  "sticky": "0",
+  "vuuid": "a449a597-3fce-4543-acf1-9e094f59eaa6",
+  "nid": "48",
+  "type": "landing_page",
+  "language": "und",
+  "created": "1418768069",
+  "changed": "1418771563",
+  "tnid": "0",
+  "translate": "0",
+  "uuid": "ede6863f-83b7-40e3-a840-c71603a08f35",
+  "revision_timestamp": "1418771563",
+  "revision_uid": "1",
+  "field_content": {
+    "und": [
+      {
+        "item_id": "7",
+        "revision_id": "31",
+        "field_name": "field_content",
+        "default_revision": "1",
+        "archived": "0",
+        "bundle": "section_item",
+        "field_pbundle_destination": {
+          "und": [
+            {
+              "url": "news-media\/news",
+              "title": "Read more news",
+              "attributes": []
+            }
+          ]
+        },
+        "field_pbundle_image": {
+          "und": [
+            {
+              "fid": "27",
+              "uid": "1",
+              "filename": "news-media.jpg",
+              "uri": "public:\/\/news-media.jpg",
+              "filemime": "image\/jpeg",
+              "filesize": "22892",
+              "status": "1",
+              "timestamp": "1418763585",
+              "type": "image",
+              "uuid": "24501576-1435-4d78-839c-9f760c4781b1",
+              "field_file_image_alt_text": [],
+              "field_file_image_title_text": [],
+              "metatags": [],
+              "rdf_mapping": [],
+              "metadata": {
+                "height": 200,
+                "width": 300
+              },
+              "alt": null,
+              "title": null,
+              "width": "300",
+              "height": "200"
+            }
+          ]
+        },
+        "field_pbundle_text": {
+          "und": [
+            {
+              "value": "<p>This shows a <strong>Section Item<\/strong> widget using the <em>Teaser (title)<\/em> view mode.<\/p>",
+              "format": "rich_text",
+              "safe_value": "<p>This shows a <strong>Section Item<\/strong> widget using the <em>Teaser (title)<\/em> view mode.<\/p>\n"
+            }
+          ]
+        },
+        "field_pbundle_title": {
+          "und": [
+            {
+              "value": "News",
+              "format": null,
+              "safe_value": "News"
+            }
+          ]
+        },
+        "field_pbundle_view_mode": {
+          "und": [
+            {
+              "entity_display": "teaser_title"
+            }
+          ]
+        },
+        "rdf_mapping": []
+      },
+      {
+        "item_id": "8",
+        "revision_id": "32",
+        "field_name": "field_content",
+        "default_revision": "1",
+        "archived": "0",
+        "bundle": "section_item",
+        "field_pbundle_destination": {
+          "und": [
+            {
+              "url": "news-media\/events",
+              "title": "Browse more events",
+              "attributes": []
+            }
+          ]
+        },
+        "field_pbundle_image": {
+          "und": [
+            {
+              "fid": "30",
+              "uid": "1",
+              "filename": "events.jpg",
+              "uri": "public:\/\/events.jpg",
+              "filemime": "image\/jpeg",
+              "filesize": "5582",
+              "status": "1",
+              "timestamp": "1418763585",
+              "type": "image",
+              "uuid": "a36a7690-55aa-43e0-8d57-87562969af3b",
+              "field_file_image_alt_text": [],
+              "field_file_image_title_text": [],
+              "metatags": [],
+              "rdf_mapping": [],
+              "metadata": {
+                "height": 80,
+                "width": 80
+              },
+              "alt": null,
+              "title": null,
+              "width": "80",
+              "height": "80"
+            }
+          ]
+        },
+        "field_pbundle_text": {
+          "und": [
+            {
+              "value": "<p>This shows a <strong>Section Item<\/strong> widget using the <em>Teaser (Image) <\/em>view mode.<\/p>",
+              "format": "rich_text",
+              "safe_value": "<p>This shows a <strong>Section Item<\/strong> widget using the <em>Teaser (Image) <\/em>view mode.<\/p>\n"
+            }
+          ]
+        },
+        "field_pbundle_title": {
+          "und": [
+            {
+              "value": "Events",
+              "format": null,
+              "safe_value": "Events"
+            }
+          ]
+        },
+        "field_pbundle_view_mode": {
+          "und": [
+            {
+              "entity_display": "teaser_image"
+            }
+          ]
+        },
+        "rdf_mapping": []
+      },
+      {
+        "item_id": "9",
+        "revision_id": "33",
+        "field_name": "field_content",
+        "default_revision": "1",
+        "archived": "0",
+        "bundle": "section_item",
+        "field_pbundle_destination": {
+          "und": [
+            {
+              "url": "news-media\/media-releases",
+              "title": "Read more Media Releases",
+              "attributes": []
+            }
+          ]
+        },
+        "field_pbundle_image": {
+          "und": [
+            {
+              "fid": "29",
+              "uid": "1",
+              "filename": "media-releases.jpg",
+              "uri": "public:\/\/media-releases.jpg",
+              "filemime": "image\/jpeg",
+              "filesize": "5097",
+              "status": "1",
+              "timestamp": "1418763585",
+              "type": "image",
+              "uuid": "ca60bada-538a-4bdd-8695-c4f0917bae97",
+              "field_file_image_alt_text": [],
+              "field_file_image_title_text": [],
+              "metatags": [],
+              "rdf_mapping": [],
+              "metadata": {
+                "height": 80,
+                "width": 80
+              },
+              "alt": null,
+              "title": null,
+              "width": "80",
+              "height": "80"
+            }
+          ]
+        },
+        "field_pbundle_text": {
+          "und": [
+            {
+              "value": "<p>This shows a <strong>Section Item<\/strong> widget using the <em>Tile (text) <\/em>view mode<\/p>",
+              "format": "rich_text",
+              "safe_value": "<p>This shows a <strong>Section Item<\/strong> widget using the <em>Tile (text) <\/em>view mode<\/p>\n"
+            }
+          ]
+        },
+        "field_pbundle_title": {
+          "und": [
+            {
+              "value": "Media Releases",
+              "format": null,
+              "safe_value": "Media Releases"
+            }
+          ]
+        },
+        "field_pbundle_view_mode": {
+          "und": [
+            {
+              "entity_display": "tile_text"
+            }
+          ]
+        },
+        "rdf_mapping": []
+      },
+      {
+        "item_id": "10",
+        "revision_id": "34",
+        "field_name": "field_content",
+        "default_revision": "1",
+        "archived": "0",
+        "bundle": "section_item",
+        "field_pbundle_destination": {
+          "und": [
+            {
+              "url": "news-media\/blog",
+              "title": "Read more Blog posts",
+              "attributes": []
+            }
+          ]
+        },
+        "field_pbundle_image": {
+          "und": [
+            {
+              "fid": "31",
+              "uid": "1",
+              "filename": "news-media.jpg",
+              "uri": "public:\/\/news-media_0.jpg",
+              "filemime": "image\/jpeg",
+              "filesize": "22892",
+              "status": "1",
+              "timestamp": "1418763585",
+              "type": "image",
+              "uuid": "37834448-7f02-4b73-bc33-3477860cf9e1",
+              "field_file_image_alt_text": [],
+              "field_file_image_title_text": [],
+              "metatags": [],
+              "rdf_mapping": [],
+              "metadata": {
+                "height": 200,
+                "width": 300
+              },
+              "alt": null,
+              "title": null,
+              "width": "300",
+              "height": "200"
+            }
+          ]
+        },
+        "field_pbundle_text": {
+          "und": [
+            {
+              "value": "<p>This shows a&nbsp;<strong>Section Item&nbsp;<\/strong>using the&nbsp;<em>Tile (Image)&nbsp;<\/em>view mode.<\/p>",
+              "format": "rich_text",
+              "safe_value": "<p>This shows a\u00a0<strong>Section Item\u00a0<\/strong>using the\u00a0<em>Tile (Image)\u00a0<\/em>view mode.<\/p>\n"
+            }
+          ]
+        },
+        "field_pbundle_title": {
+          "und": [
+            {
+              "value": "Blog",
+              "format": null,
+              "safe_value": "Blog"
+            }
+          ]
+        },
+        "field_pbundle_view_mode": {
+          "und": [
+            {
+              "entity_display": "tile_image"
+            }
+          ]
+        },
+        "rdf_mapping": []
+      }
+    ]
+  },
+  "path": {
+    "pid": "104",
+    "source": "node\/48",
+    "alias": "news-media",
+    "language": "und",
+    "pathauto": "0"
+  },
+  "rdf_mapping": {
+    "rdftype": [
+      "sioc:Item",
+      "foaf:Document"
+    ],
+    "title": {
+      "predicates": [
+        "dc:title"
+      ]
+    },
+    "created": {
+      "predicates": [
+        "dc:date",
+        "dc:created"
+      ],
+      "datatype": "xsd:dateTime",
+      "callback": "date_iso8601"
+    },
+    "changed": {
+      "predicates": [
+        "dc:modified"
+      ],
+      "datatype": "xsd:dateTime",
+      "callback": "date_iso8601"
+    },
+    "body": {
+      "predicates": [
+        "content:encoded"
+      ]
+    },
+    "uid": {
+      "predicates": [
+        "sioc:has_creator"
+      ],
+      "type": "rel"
+    },
+    "name": {
+      "predicates": [
+        "foaf:name"
+      ]
+    },
+    "comment_count": {
+      "predicates": [
+        "sioc:num_replies"
+      ],
+      "datatype": "xsd:integer"
+    },
+    "last_activity": {
+      "predicates": [
+        "sioc:last_activity_date"
+      ],
+      "datatype": "xsd:dateTime",
+      "callback": "date_iso8601"
+    }
+  },
+  "cid": "0",
+  "last_comment_timestamp": "1418768069",
+  "last_comment_name": null,
+  "last_comment_uid": "1",
+  "comment_count": "0",
+  "machine_name": false,
+  "name": "admin",
+  "picture": "0",
+  "data": "a:1:{s:7:\"contact\";i:1;}",
+  "entity_type": "node",
+  "menu": {
+    "enabled": 1,
+    "link_title": "News and Events",
+    "menu_name": "main-menu"
+  }
+}

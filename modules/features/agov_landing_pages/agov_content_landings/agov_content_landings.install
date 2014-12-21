@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Install file for agov_content_landings.
+ *
+ * @license GPL v2 http://www.fsf.org/licensing/licenses/gpl.html
+ * @author Chris Skene chris at previousnext dot com dot au
+ * @copyright Copyright(c) 2014 Previous Next Pty Ltd
+ */
+
+/**
+ * Implements hook_install().
+ */
+function agov_content_landings_install() {
+
+  $dependencies = array(
+    'agov_arrangements',
+    'agov_paragraphs',
+    'agov_landing_pages',
+  );
+
+  \Drupal\agov_core\Fabricator\EntityImporter::init()->createDefaultContent('agov_content_landings', $dependencies);
+}

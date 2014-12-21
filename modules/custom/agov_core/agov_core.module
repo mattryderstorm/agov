@@ -9,6 +9,11 @@
  */
 
 /**
+ * Define the current log to screen constant.
+ */
+define('AGOV_CORE_LOG_SCREEN', TRUE);
+
+/**
  * Implements hook_help().
  */
 function agov_core_help($path, $arg) {
@@ -304,4 +309,22 @@ function agov_core_metatag_config_default_alter(&$configs) {
   $configs['global']->config['dcterms.type'] = array('item' => array('value' => 'other'));
   $configs['global']->config['generator'] = array('value' => 'Drupal 7 (http://drupal.org) + aGov (http://agov.com.au)');
   $configs['node']->config['dcterms.language'] = array('item' => array('value' => 'en'));
+}
+
+/**
+ * Helper to export entities via devel.
+ *
+ * @param string $entity_type
+ *   The entity type
+ * @param string $entity_id
+ *   The entity identifier
+ *
+ * @return string
+ *   Encoded JSON
+ *
+ * @throws \Exception
+ */
+function agov_core_export_entity($entity_type, $entity_id) {
+
+  return \Drupal\agov_core\Fabricator\EntityExporter::init()->exportEntity($entity_type, $entity_id);
 }

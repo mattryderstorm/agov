@@ -301,5 +301,5 @@ function agov_content_news_article_content_defaults() {
     ),
   );
 
-return $content;
+  return $content;
 }

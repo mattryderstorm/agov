@@ -2,3 +2,9 @@ name = aGov Core
 package = aGov core
 description = Provides common functionality required by other aGov modules
 core = 7.x
+
+dependencies[] = ghost
+dependencies[] = registry_autoload
+
+registry_autoload[] = PSR-4
+
