@@ -13,15 +13,11 @@
 
 // Turns off the element-invisible effect.
 @mixin element-invisible-off {
+  position: static !important;
   clip: auto;
   height: auto;
   width: auto;
   overflow: auto;
-  display: block;
-  padding: 1em;
-  background-color: $color-highlight;
-  color: $color-highlight-contrast;
-  z-index: 10;
 }
 
 // Makes an element visually hidden by default, but visible when focused.
