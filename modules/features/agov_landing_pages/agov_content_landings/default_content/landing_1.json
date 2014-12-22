@@ -1,7 +1,7 @@
 {
   "vid": "51",
   "uid": "1",
-  "title": "News and Media",
+  "title": "News & Media",
   "log": "Edited by admin.",
   "status": "1",
   "comment": "1",
@@ -23,6 +23,7 @@
       {
         "item_id": "7",
         "revision_id": "31",
+        "entity_type": "paragraphs_item",
         "field_name": "field_content",
         "default_revision": "1",
         "archived": "0",
@@ -94,6 +95,7 @@
       {
         "item_id": "8",
         "revision_id": "32",
+        "entity_type": "paragraphs_item",
         "field_name": "field_content",
         "default_revision": "1",
         "archived": "0",
@@ -165,6 +167,7 @@
       {
         "item_id": "9",
         "revision_id": "33",
+        "entity_type": "paragraphs_item",
         "field_name": "field_content",
         "default_revision": "1",
         "archived": "0",
@@ -237,6 +240,7 @@
         "item_id": "10",
         "revision_id": "34",
         "field_name": "field_content",
+        "entity_type": "paragraphs_item",
         "default_revision": "1",
         "archived": "0",
         "bundle": "section_item",
@@ -255,7 +259,7 @@
               "fid": "31",
               "uid": "1",
               "filename": "news-media.jpg",
-              "uri": "public:\/\/news-media_0.jpg",
+              "uri": "public:\/\/news-media.jpg",
               "filemime": "image\/jpeg",
               "filesize": "22892",
               "status": "1",
@@ -380,7 +384,8 @@
   "entity_type": "node",
   "menu": {
     "enabled": 1,
-    "link_title": "News and Events",
-    "menu_name": "main-menu"
+    "link_title": "News & events",
+    "menu_name": "main-menu",
+    "description": "News & events"
   }
 }

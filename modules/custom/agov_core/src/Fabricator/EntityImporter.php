@@ -12,7 +12,6 @@
 namespace Drupal\agov_core\Fabricator;
 
 use Drupal\agov_core\Util\Logger;
-use Drupal\agov_core\Fabricator\EntityFactory;
 
 /**
  * Class EntityImporter
@@ -55,22 +54,21 @@ class EntityImporter {
   /**
    * Imports default entity.
    *
+   * @param array $entity_values
+   *   The entity values.
    * @param string $path
-   *   Directory in which file resides
-   * @param string $file
-   *   File name.
+   *   Directory in which the source file resides. Defaults to NULL
+   * @param string $parent_entity_type
+   *   The parent entity type.
+   * @param object $parent_entity
+   *   Our entity
    *
-   * @throws \EntityMalformedException
-   *   When the entity is malformed.
-   * @throws \InvalidArgumentException
-   *   When no entity-type is provided.
+   * @return object
+   *   The created entity (which will already have been saved).
    */
-  public function createEntity($path, $file) {
+  public function createEntity($entity_values, $path = NULL, $parent_entity_type = NULL, $parent_entity = NULL) {
 
-    $entity_values = json_decode(file_get_contents($path . '/' . $file->filename), TRUE);
-    unset($entity_values['nid']);
-    unset($entity_values['vid']);
-
+    // Exports must contain an "entity_type" key so we can proceed.
     if (empty($entity_values['entity_type'])) {
       throw new \InvalidArgumentException('You must provide a value for entity_type');
     }
@@ -78,19 +76,26 @@ class EntityImporter {
     // Get keys for the entity type.
     $entity_type = $entity_values['entity_type'];
     $info = entity_get_info($entity_type);
-    $primary_id = $info['entity keys']['id'];
+    $primary_key = $info['entity keys']['id'];
+    $revision_key = $info['entity keys']['revision'];
     if (!empty($info['entity keys']['bundle'])) {
-      $bundle_id = $info['entity keys']['bundle'];
+      $bundle_key = $info['entity keys']['bundle'];
     }
     else {
       // The entity type provides no bundle key: assume a single bundle, named
       // after the entity type.
-      $bundle_id = $entity_type;
+      $bundle_key = $entity_type;
     }
 
-    // Get field information to process per-type fields.
+    // Clean up keys provided on the source. These are of no use to us.
+    unset($entity_values[$primary_key]);
+    if (isset($entity_values[$revision_key])) {
+      unset($entity_values[$revision_key]);
+    }
+
+    // 1. Preparation step.
     $paragraphs = array();
-    $fields_info = field_info_instances($entity_type, $entity_values[$bundle_id]);
+    $fields_info = field_info_instances($entity_type, $entity_values[$bundle_key]);
     foreach (array_keys($fields_info) as $field_name) {
       $field_info = field_info_field($field_name);
 
@@ -101,79 +106,48 @@ class EntityImporter {
       }
     }
 
-    // Create the entity.
+    // 2. Entity creation.
     $entity = $this->entityFactory->createEntity($entity_type, $entity_values);
     if (isset($entity->workbench_moderation)) {
       unset($entity->workbench_moderation);
     }
 
+    // Ensure some defaults are set correctly.
+    $entity->status = 1;
+    $entity->revision = 1;
+    $entity->is_new = 1;
+    if (workbench_moderation_node_type_moderated($entity_values[$bundle_key])) {
+      $entity->workbench_moderation_state_new = 'published';
+    }
+
+    // 3. Field resolution.
     foreach (array_keys($fields_info) as $field_name) {
       $field_info = field_info_field($field_name);
 
       // Paragraphs should have been exported directly, and
       // need to be resaved and remapped back to field values.
       if ($field_info['type'] == 'paragraphs' && isset($paragraphs[$field_name]) && !empty($paragraphs[$field_name])) {
-        $this->processParagraphEntities($entity, $entity_type, $paragraphs[$field_name]);
+        $this->processParagraphEntities($entity_type, $entity, $paragraphs[$field_name], $path);
       }
 
-      if (isset($fields_info['type']) && ($fields_info['type'] == 'file' || $fields_info['type'] == 'image')) {
-        $this->processFileImageFields($path, $field_name, $entity);
+      if (!empty($path)) {
+        if (isset($field_info['type']) && ($field_info['type'] == 'file' || $field_info['type'] == 'image')) {
+          $this->processFileImageFields($path, $field_name, $entity);
+        }
       }
     }
 
-    $entity->status = 1;
-    $entity->revision = 1;
-
-    if (workbench_moderation_node_type_moderated($entity_values[$bundle_id])) {
-      $entity->workbench_moderation_state_new = 'published';
+    // 4. Entity save.
+    if ($entity_type == 'paragraphs_item') {
+      $entity->setHostEntity($parent_entity_type, $parent_entity);
     }
-
     entity_save($entity_type, $entity);
     drupal_set_message(format_string('Created new entity of type %type with ID %id', array(
       '%type' => $entity_type,
-      '%id' => $entity->{$primary_id},
+      '%id' => $entity->{$primary_key},
     )));
-  }
 
-  /**
-   * Imports entities from a module.
-   *
-   * @param string $module
-   *   Module containing the default content.
-   * @param array $features_to_revert
-   *   Name of modules to revert.
-   */
-  public function createDefaultContent($module, $features_to_revert = array()) {
-
-    foreach ($features_to_revert as $feature) {
-      features_revert_module($feature);
-    }
-
-    $path = drupal_get_path('module', $module) . '/default_content';
-    Logger::log('Scannning %path for content', array(
-      '%path' => $path,
-    ));
-
-    $count = 0;
-    $failed = 0;
-
-    foreach (file_scan_directory($path, '/\.json$/') as $file) {
-      try {
-        $this->createEntity($path, $file);
-
-      }
-      catch (\Exception $e) {
-        watchdog_exception('agov_core', $e);
-        $failed++;
-      }
-      $count++;
-    }
-
-    Logger::log('Attempted to create %count entities, with %failed failures.', array(
-      '%count' => $count,
-      '%failed' => $failed,
-    ));
-
+    return $entity;
   }
 
   /**
@@ -203,16 +177,16 @@ class EntityImporter {
   /**
    * Process paragraph entities.
    *
-   * @param object $parent_entity
-   *   Our entity
    * @param string $parent_entity_type
    *   The parent entity type.
+   * @param object $parent_entity
+   *   Our entity
    * @param array $paragraphs
    *   An array of paragraph item settings.
-   *
-   * @throws \Exception
+   * @param string $path
+   *   Directory in which the source file resides. Defaults to NULL.
    */
-  protected function processParagraphEntities($parent_entity, $parent_entity_type, $paragraphs) {
+  protected function processParagraphEntities($parent_entity_type, $parent_entity, $paragraphs, $path) {
 
     if (empty($paragraphs)) {
 
@@ -229,14 +203,7 @@ class EntityImporter {
 
         $item = (array) $item;
 
-        // Convert this to a "new" entity.
-        unset($item['item_id']);
-        unset($item['revision_id']);
-        $item['is_new'] = TRUE;
-
-        $paragraph_entity = $this->entityFactory->createParagraph($item);
-        $paragraph_entity->setHostEntity($parent_entity_type, $parent_entity);
-        $paragraph_entity->save();
+        $paragraph_entity = $this->createEntity($item, $path, $parent_entity_type, $parent_entity);
 
         Logger::log('Created paragraph %id of type %bundle', array(
           '%id' => $paragraph_entity->identifier(),
@@ -261,13 +228,23 @@ class EntityImporter {
     if (!empty($entity->{$field_name})) {
 
       $files = $entity->$field_name;
+      unset($entity->$field_name);
 
-      foreach ($files as $file_settings) {
-        if (($handle = fopen($path . '/files/' . $file_settings->filename, 'r')) && $file = file_save_data($handle, 'public://' . $file_settings->filename)) {
-          fclose($handle);
-          $file_settings->uri = 'public://' . $file_settings->filename;
-          $file_settings->fid = $file->fid;
-          $entity->{$field_name}[LANGUAGE_NONE][] = $file_settings;
+      foreach ($files as $lang => $lang_files) {
+        foreach ($lang_files as $original_settings) {
+          $uri = 'public://' . $original_settings['filename'];
+
+          if (($handle = fopen($path . '/files/' . $original_settings['filename'], 'r')) && $new_file = file_save_data($handle, $uri)) {
+            fclose($handle);
+
+            $original_settings['fid'] = $new_file->fid;
+            $original_settings['uri'] = $new_file->uri;
+            $original_settings['filename'] = $new_file->filename;
+            $original_settings['timestamp'] = $new_file->timestamp;
+            $original_settings['uuid'] = $new_file->uuid;
+
+            $entity->{$field_name}[$lang][] = $original_settings;
+          }
         }
       }
     }

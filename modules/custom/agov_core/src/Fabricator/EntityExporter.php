@@ -111,7 +111,9 @@ class EntityExporter {
         }
 
         foreach ($paragraphs_items as $paragraphs_item) {
-          $paragraph_entities[$paragraphs_item_lang][] = $this->entityLoad('paragraphs_item', $paragraphs_item['value']);
+          $paragraph_entity = $this->entityLoad('paragraphs_item', $paragraphs_item['value']);
+          $paragraph_entity->entity_type = 'paragraphs_item';
+          $paragraph_entities[$paragraphs_item_lang][] = $paragraph_entity;
         }
       }
 

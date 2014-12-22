@@ -20,5 +20,5 @@ function agov_content_landings_install() {
     'agov_landing_pages',
   );
 
-  \Drupal\agov_core\Fabricator\EntityImporter::init()->createDefaultContent('agov_content_landings', $dependencies);
+  \Drupal\agov_core\Fabricator\DirectoryImporter::init()->createDefaultContent('agov_content_landings', $dependencies);
 }
