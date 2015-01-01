@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * @file
+ * aGov Developer tools
+ *
+ * @license GPL v2 http://www.fsf.org/licensing/licenses/gpl.html
+ * @author Chris Skene chris at previousnext dot com dot au
+ * @copyright Copyright(c) 2014 Previous Next Pty Ltd
+ */
+
+/**
+ * Define a permission name.
+ */
+const AGOV_DEV_TOOLS_PERMISSION = 'access developer information';
+
+/**
+ * Implements hook_permission().
+ */
+function agov_dev_tools_permission() {
+  return array(
+    AGOV_DEV_TOOLS_PERMISSION => array(
+      'description' => t('View developer information for aGov.'),
+      'title' => t('View developer information for aGov'),
+      'restrict access' => TRUE,
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function agov_dev_tools_menu_alter(&$items) {
+
+  $items['node/%node/agov-export'] = array(
+    'type' => MENU_LOCAL_TASK,
+    'title' => 'Export',
+    'page callback' => '\Drupal\\ghost\\Page\\PageController::createPage',
+    'page arguments' => array(
+      '\Drupal\\agov_dev_tools\\Page\\ContentExporter',
+      'exportContent',
+      1,
+    ),
+    'access arguments' => array(AGOV_DEV_TOOLS_PERMISSION),
+    'weight' => 100,
+  );
+}
+
+/**
+ * Implements hook_admin_paths().
+ */
+function agov_dev_tools_admin_paths() {
+  $paths = array(
+    'node/*/agov-export' => TRUE,
+  );
+  return $paths;
+}

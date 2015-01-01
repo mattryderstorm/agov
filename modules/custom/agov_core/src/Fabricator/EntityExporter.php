@@ -47,9 +47,11 @@ class EntityExporter {
    */
   public function exportEntity($entity_type, $entity_id) {
 
-    $entity = $this->entityLoad($entity_type, $entity_id);
+    $source = $this->entityLoad($entity_type, $entity_id);
 
-    list(, , $bundle) = entity_extract_ids($entity_type, $entity);
+    $working = clone $source;
+
+    list(, , $bundle) = entity_extract_ids($entity_type, $working);
 
     $fields_info = field_info_instances($entity_type, $bundle);
 
@@ -59,13 +61,38 @@ class EntityExporter {
       // Paragraphs get mapped exactly to their parent, and can be loaded here.
       if ($field_info['type'] == 'paragraphs') {
 
-        $this->processParagraphEntities($field_name, $entity);
+        $this->processParagraphEntities($field_name, $working);
       }
     }
 
-    $entity->entity_type = $entity_type;
+    // We MUST have an entity type to enable recreation.
+    $working->entity_type = $entity_type;
 
-    return json_encode($entity, JSON_PRETTY_PRINT);
+    // Remove Moderation information, since we will create this as a new item
+    // anyway.
+    if (isset($working->workbench_moderation)) {
+      unset($working->workbench_moderation);
+    }
+
+    // Our exports can use metatag defaults.
+    if (isset($working->metatags)) {
+      unset($working->metatags);
+    }
+
+    // Add a menu item, if present.
+    $results = db_select('menu_links', 'm')
+      ->fields('m', array('link_title', 'menu_name'))
+      ->condition('link_path', 'node/' . $entity_id)
+      ->execute()
+      ->fetchAll();
+
+    if (!empty($results)) {
+      $working->menu = reset($results);
+      $working->menu->enabled = 1;
+      $working->menu->description = '';
+    }
+
+    return json_encode($working, JSON_PRETTY_PRINT);
   }
 
   /**
@@ -76,9 +103,8 @@ class EntityExporter {
    * @param array $entity_id
    *   The entity identifier
    *
-   * @return array
-   *   An array of entity objects indexed by their ids. When no results are
-   *   found, an empty array is returned.
+   * @return object
+   *   A single entity.
    */
   protected function entityLoad($entity_type, $entity_id) {
 

@@ -1,0 +1,9 @@
+name = aGov Developer Tools
+package = aGov core
+description = Provides aGov developer-only functionality. DO NOT ENABLE ON PRODUCTION SITES.
+core = 7.x
+
+dependencies[] = ghost
+dependencies[] = registry_autoload
+
+registry_autoload[] = PSR-4
