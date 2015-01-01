@@ -5,3 +5,52 @@
  */
 
 include_once 'agov_landing_pages.features.inc';
+
+/**
+ * Implements hook_preprocess_page().
+ *
+ * Implements logic for hiding page sidebars based on the field_hide_sidebars
+ * field.
+ */
+function agov_landing_pages_preprocess_page(&$variables) {
+
+  if (arg(0) == 'node' && is_numeric(arg(1))) {
+
+    $state = arg(2);
+    // We only switch on view or draft callbacks. Exit on others.
+    if (!empty($state) &&  $state != 'draft') {
+      return;
+    }
+
+    // Get the current node, and revision if relevant.
+    $node = node_load(arg(1));
+    if (arg(2) == 'draft' && $node->type == 'landing_page') {
+      $node = workbench_moderation_node_current_load($node);
+    }
+
+    // If we are on the right kind of node and we have a field setting, 'hide'
+    // the sidebars using brute force.
+    if (isset($node) && !empty($node)) {
+      if ($node->type == 'landing_page') {
+        if (isset($node->field_hide_sidebars[LANGUAGE_NONE][0]['value'])) {
+          $sidebar_setting = $node->field_hide_sidebars[LANGUAGE_NONE][0]['value'];
+
+          switch ($sidebar_setting) {
+            case 'first':
+              $variables['page']['sidebar_first'] = array();
+              break;
+
+            case 'second':
+              $variables['page']['sidebar_second'] = array();
+              break;
+
+            case 'all':
+              $variables['page']['sidebar_first'] = array();
+              $variables['page']['sidebar_second'] = array();
+              break;
+          }
+        }
+      }
+    }
+  }
+}
