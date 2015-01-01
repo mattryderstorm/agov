@@ -113,9 +113,12 @@ function agov_core_create_bean($bean_type, $label, $description = '', $title = '
  * @param int $weight
  *   (optional) The weight of the block. Defaults to 0.
  * @param int $visibility
- *   (optional) The visibility of the block. Defaults to 0.
+ *   (optional) The visibility of the block. Defaults to
+ *   BLOCK_VISIBILITY_NOTLISTED.
  * @param string $pages
- *   (optional) The pages to show the block on. Defaults to all.
+ *   (optional) The pages to hide the block on if $visibility is set to
+ *   BLOCK_VISIBILITY_NOTLISTED (defaults to none), or show them if set to
+ *   BLOCK_VISIBILITY_LISTED (defaults to none).
  * @param string $title
  *   (optional) The title. Defaults to empty. Specify '<none>' to hide.
  *
@@ -123,7 +126,7 @@ function agov_core_create_bean($bean_type, $label, $description = '', $title = '
  * @return bool
  *   TRUE if the block is inserted, or FALSE on an error.
  */
-function agov_core_insert_block($module, $delta, $theme, $region = BLOCK_REGION_NONE, $weight = 0, $visibility = 0, $pages = '', $title = '') {
+function agov_core_insert_block($module, $delta, $theme, $region = BLOCK_REGION_NONE, $weight = 0, $visibility = BLOCK_VISIBILITY_NOTLISTED, $pages = '', $title = '') {
   if (!isset($theme)) {
     $theme = variable_get('theme_default', NULL);
     if (!isset($theme) || is_null($theme)) {
