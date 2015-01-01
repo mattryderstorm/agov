@@ -1734,11 +1734,11 @@ form#sweaver-frontend > div {
   height: 300px;
 }
 
-.view-mode-compact .field-name-field-thumbnail {
+article.view-mode-compact .field-name-field-thumbnail {
   width: 21%;
   margin-right: 1.4em;
 }
-.view-mode-compact .field-name-body {
+article.view-mode-compact .field-name-body {
   float: none;
   clear: none;
 }
