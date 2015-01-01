@@ -79,3 +79,14 @@ a :focus {
 #block-menu-menu-footer-sub-menu a {
   color: #FFF;
 }
+
+.section__highlighted {
+  background: #006893;
+  color: #fff;
+}
+.section__highlighted a {
+  color: white;
+}
+.section__highlighted h2, .section__highlighted h3 {
+  color: #fff;
+}
