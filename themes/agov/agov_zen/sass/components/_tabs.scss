@@ -8,11 +8,16 @@
   background: $color-tertiary-light;
   border: solid 1px darken($color-tertiary-light,10%);
   @include box-shadow(0, 5px -10px 10px -15px grey inset, 0, 0);
+  margin: rhythm(1) 0 0 0;
 }
 
 // tabs
 .tabs-primary__tab {
   display: inline-block;
+}
+.tabs-primary__tab:first-child {
+  margin-left: 1em;
+  border-left: solid 1px darken($color-tertiary-light, 10%);
 }
 
 // tab-links
@@ -23,7 +28,6 @@
   text-decoration: none;
   font-weight: bold;
 }
-
 .tabs-primary__tab-link.is-active {
   margin-top: -1px;
   background: white;

@@ -1,3 +1,13 @@
+
+@mixin field-image-left-float {
+  width: 35%;
+  margin-right: rhythm(1);
+}
+@mixin field-text-right-float {
+  width: 60%;
+  clear: none;
+}
+
 .field {
   margin: rhythm(0.5) 0;
 }
