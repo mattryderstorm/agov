@@ -6,6 +6,20 @@
  * Complete documentation for this file is available online.
  * @see https://drupal.org/node/1728148
  */
+
+// Render the sidebars to see if there's anything in them.
+$sidebar_first  = render($page['sidebar_first']);
+$sidebar_second = render($page['sidebar_second']);
+
+$layout = 'layout-full';
+if (!empty($sidebar_first) && !empty($sidebar_second)) :
+  $layout = 'layout-sidebars';
+elseif (!empty($sidebar_first)) :
+  $layout = 'layout-sidebar-first';
+elseif (!empty($sidebar_second)) :
+  $layout = 'layout-sidebar-second';
+endif;
+
 ?>
 
 <header class="header" id="header" role="banner">
@@ -47,9 +61,9 @@
 
   <?php print $breadcrumb; ?>
 
-  <div id="main">
+  <div id="main" class="<?php print $layout; ?>">
 
-    <div id="content" class="column" role="main">
+    <div id="content" class="<?php print $layout; ?>__main main-content" role="main">
 
       <a href="#skip-link" id="skip-content" class="element-invisible">Go to top of page</a>
 
@@ -69,23 +83,24 @@
       <?php print $feed_icons; ?>
     </div>
 
-    <?php
-      // Render the sidebars to see if there's anything in them.
-      $sidebar_first  = render($page['sidebar_first']);
-      $sidebar_second = render($page['sidebar_second']);
-    ?>
-
     <?php if ($sidebar_first || $sidebar_second): ?>
       <aside class="sidebars" role="complementary">
-        <?php print $sidebar_first; ?>
-        <?php print $sidebar_second; ?>
-      </aside>
+        <?php if ($sidebar_first) : ?>
+          <div class="<?php print $layout; ?>__sidebar-first" >
+            <?php print $sidebar_first; ?>
+          </div>
+        <?php endif; ?>
+
+        <?php if ($sidebar_second) : ?>
+          <div class="<?php print $layout; ?>__sidebar-second" >
+            <?php print $sidebar_second; ?>
+          </div>
+        <?php endif; ?>      </aside>
     <?php endif; ?>
 
   </div>
 
   <?php print render($page['footer']); ?>
-
 </div>
 
 <?php print render($page['bottom']); ?>

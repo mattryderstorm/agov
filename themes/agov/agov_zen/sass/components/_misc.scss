@@ -288,8 +288,12 @@ span.field-label {
  */
 
 /* Block wrapper. */
-#main .block, .region-highlighted .block, .sidebar .block {
+.region-highlighted .block {
   margin-bottom: rhythm(1);
+}
+
+.sidebars .block {
+  margin: rhythm(1);
 }
 
 /* The active item in a Drupal menu. */

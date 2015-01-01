@@ -1,0 +1,52 @@
+// Columns
+//
+// Defines standard layout behaviours for a three-column base layout
+// using Drupal regions.
+
+@mixin layout-column($medium-pixel-width, $large-pixel-width, $float: left) {
+
+  @include bp-nq($medium) {
+    float: $float;
+    width: $medium-pixel-width;
+  }
+  @include bp-nq($large) {
+    width: $large-pixel-width;
+  }
+}
+
+$large-full: 960px;
+$large-column: 300px;
+$medium-full: 730px;
+$medium-column: 220px;
+
+// Layout full.
+.layout-full__main {
+  @include layout-column($medium-full, $large-full);
+}
+
+// Layout sidebar first.
+.layout-sidebar-first__main {
+  @include layout-column($medium-full - $medium-column, $large-full - $medium-column, right);
+}
+.layout-sidebar-first__sidebar-first {
+  @include layout-column($medium-column, $medium-column);
+}
+
+// Layout sidebar second.
+.layout-sidebar-second__main {
+  @include layout-column($medium-full - $medium-column, $large-full - $large-column)
+}
+.layout-sidebar-second__sidebar-second {
+  @include layout-column($medium-column, $large-column)
+}
+
+// Layout both sidebars
+.layout-sidebars__main {
+  @include layout-column($large-full - $large-column - $medium-column, right)
+}
+.layout-sidebars__sidebar-first {
+  @include layout-column($medium-column, $medium-column)
+}
+.layout-sidebars__sidebar-second {
+  @include layout-column($medium-column, $large-column, right)
+}

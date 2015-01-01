@@ -9,8 +9,14 @@
   @include adaptivelyCentered;
 }
 
-#main {
+.main-content {
   clear: both;
+  padding: rhythm(1);
+
+  > .page__title {
+    // This should be adjusted, but setting it with em's produces the wrong result.
+    margin-bottom: rhythm(0.5);
+  }
 }
 
 #footer {
@@ -25,26 +31,3 @@
 }
 
 .header__inner { @include adaptivelyCentered; }
-
-/*
-* Column logic.
-*/
-#content {
-  padding: rhythm(1);
-
-  @include bp-nq($medium) {
-    float: left;
-    width: 490px;
-  }
-  @include bp-nq($large) { width: 660px; }
-}
-
-.region-sidebar-second {
-  padding: rhythm(1);
-
-  @include bp-nq($medium) {
-    float: right;
-    width: 230px;
-  }
-  @include bp-nq($large) { width: 300px; }
-}
