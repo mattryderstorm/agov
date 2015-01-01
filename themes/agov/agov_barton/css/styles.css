@@ -90,3 +90,9 @@ a :focus {
 .section__highlighted h2, .section__highlighted h3 {
   color: #fff;
 }
+.section__highlighted .field-item {
+  border-left: 1px solid white;
+}
+.section__highlighted .field-item:first-child {
+  border-left: none;
+}

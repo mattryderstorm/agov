@@ -129,5 +129,13 @@ a {
   h2, h3 {
     color: #fff;
   }
+
+  .field-item {
+    border-left: 1px solid white;
+
+    &:first-child {
+      border-left: none;
+    }
+  }
 }
 
