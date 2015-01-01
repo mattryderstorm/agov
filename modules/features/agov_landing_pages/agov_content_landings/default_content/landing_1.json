@@ -1,7 +1,7 @@
 {
   "vid": "51",
   "uid": "1",
-  "title": "News & Media",
+  "title": "News & events",
   "log": "Edited by admin.",
   "status": "1",
   "comment": "1",
@@ -307,6 +307,13 @@
           ]
         },
         "rdf_mapping": []
+      }
+    ]
+  },
+  "field_hide_sidebars": {
+    "und": [
+      {
+        "value": "second"
       }
     ]
   },
