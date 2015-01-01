@@ -1,0 +1,249 @@
+{
+  "vid": "112",
+  "uid": "1",
+  "title": "Home",
+  "log": "Edited by admin.",
+  "status": "1",
+  "comment": "1",
+  "promote": "0",
+  "sticky": "0",
+  "vuuid": "1a8d4e0d-5f10-4618-aa49-6ec41caeffcc",
+  "nid": "58",
+  "type": "landing_page",
+  "language": "und",
+  "created": "1419227944",
+  "changed": "1420031175",
+  "tnid": "0",
+  "translate": "0",
+  "uuid": "732c78e0-021a-41c6-a35c-b3da01c13215",
+  "revision_timestamp": "1420031175",
+  "revision_uid": "1",
+  "field_content": {
+    "und": [
+      {
+        "item_id": "53",
+        "revision_id": "226",
+        "field_name": "field_content",
+        "default_revision": "1",
+        "archived": "0",
+        "bundle": "block",
+        "field_pbundle_block": {
+          "und": [
+            {
+              "moddelta": "views:slideshow-block"
+            }
+          ]
+        },
+        "field_pbundle_css_classes": [],
+        "rdf_mapping": [],
+        "entity_type": "paragraphs_item"
+      },
+      {
+        "item_id": "54",
+        "revision_id": "227",
+        "field_name": "field_content",
+        "default_revision": "1",
+        "archived": "0",
+        "bundle": "view",
+        "field_pbundle_section_layout": {
+          "und": [
+            {
+              "target_id": "4"
+            }
+          ]
+        },
+        "field_pbundle_title": {
+          "und": [
+            {
+              "value": "Latest News",
+              "format": null,
+              "safe_value": "Latest News"
+            }
+          ]
+        },
+        "field_pbundle_view": {
+          "und": [
+            {
+              "vname": "latest_news|block_1",
+              "vargs": ""
+            }
+          ]
+        },
+        "field_pbundle_css_classes": [],
+        "rdf_mapping": [],
+        "entity_type": "paragraphs_item"
+      },
+      {
+        "item_id": "58",
+        "revision_id": "231",
+        "field_name": "field_content",
+        "default_revision": "1",
+        "archived": "0",
+        "bundle": "section",
+        "field_pbundle_section_content": {
+          "und": [
+            {
+              "value": "59",
+              "revision_id": "228"
+            },
+            {
+              "value": "56",
+              "revision_id": "229"
+            },
+            {
+              "value": "57",
+              "revision_id": "230"
+            }
+          ]
+        },
+        "field_pbundle_section_layout": {
+          "und": [
+            {
+              "target_id": "3"
+            }
+          ]
+        },
+        "field_pbundle_title": {
+          "und": [
+            {
+              "value": "Resources",
+              "format": null,
+              "safe_value": "Resources"
+            }
+          ]
+        },
+        "field_pbundle_css_classes": {
+          "und": [
+            {
+              "value": "section__highlighted",
+              "format": null,
+              "safe_value": "section__highlighted"
+            }
+          ]
+        },
+        "rdf_mapping": [],
+        "entity_type": "paragraphs_item"
+      },
+      {
+        "item_id": "55",
+        "revision_id": "232",
+        "field_name": "field_content",
+        "default_revision": "1",
+        "archived": "0",
+        "bundle": "view",
+        "field_pbundle_section_layout": {
+          "und": [
+            {
+              "target_id": "3"
+            }
+          ]
+        },
+        "field_pbundle_title": {
+          "und": [
+            {
+              "value": "Latest Blogs",
+              "format": null,
+              "safe_value": "Latest Blogs"
+            }
+          ]
+        },
+        "field_pbundle_view": {
+          "und": [
+            {
+              "vname": "home_page_blog_articles|block_1",
+              "vargs": ""
+            }
+          ]
+        },
+        "field_pbundle_css_classes": [],
+        "rdf_mapping": [],
+        "entity_type": "paragraphs_item"
+      }
+    ]
+  },
+  "field_hide_sidebars": {
+    "und": [
+      {
+        "value": "all"
+      }
+    ]
+  },
+  "path": {
+    "pid": "101",
+    "source": "node\/58",
+    "alias": "home",
+    "language": "und",
+    "pathauto": "0"
+  },
+  "rdf_mapping": {
+    "rdftype": [
+      "sioc:Item",
+      "foaf:Document"
+    ],
+    "title": {
+      "predicates": [
+        "dc:title"
+      ]
+    },
+    "created": {
+      "predicates": [
+        "dc:date",
+        "dc:created"
+      ],
+      "datatype": "xsd:dateTime",
+      "callback": "date_iso8601"
+    },
+    "changed": {
+      "predicates": [
+        "dc:modified"
+      ],
+      "datatype": "xsd:dateTime",
+      "callback": "date_iso8601"
+    },
+    "body": {
+      "predicates": [
+        "content:encoded"
+      ]
+    },
+    "uid": {
+      "predicates": [
+        "sioc:has_creator"
+      ],
+      "type": "rel"
+    },
+    "name": {
+      "predicates": [
+        "foaf:name"
+      ]
+    },
+    "comment_count": {
+      "predicates": [
+        "sioc:num_replies"
+      ],
+      "datatype": "xsd:integer"
+    },
+    "last_activity": {
+      "predicates": [
+        "sioc:last_activity_date"
+      ],
+      "datatype": "xsd:dateTime",
+      "callback": "date_iso8601"
+    }
+  },
+  "cid": "0",
+  "last_comment_timestamp": "1419227944",
+  "last_comment_name": null,
+  "last_comment_uid": "1",
+  "comment_count": "0",
+  "machine_name": false,
+  "name": "admin",
+  "picture": "0",
+  "data": "a:1:{s:7:\"contact\";i:1;}",
+  "entity_type": "node",
+  "menu": {
+    "link_title": "Home",
+    "menu_name": "main-menu",
+    "enabled": 1,
+    "description": ""
+  }
+}

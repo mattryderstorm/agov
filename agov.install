@@ -69,9 +69,6 @@ function agov_install() {
   // Enable full image display mode.
   _agov_install_full_image_display();
 
-  // Set default menu items.
-  _agov_set_menu();
-
   // Set default tags.
   _agov_default_tags();
 
@@ -629,9 +626,9 @@ function _agov_default_blocks() {
   agov_core_insert_block('views', 'footer_teaser-block', $themes, 'footer', 1);
 
   // Set aGov sidebar blocks.
-  agov_core_insert_block('menu_block', 'agov_menu_block-sidebar', $themes, 'sidebar_second', -50);
-  agov_core_insert_block('menu', 'menu-quick-links', $themes, 'sidebar_second', -48);
-  agov_core_insert_block('agov_social_links', 'services', $themes, 'sidebar_second', -47);
+  // This doesn't need to be hidden anywhere, as individual landing pages can
+  // set visibility on regions.
+  agov_core_insert_block('menu_block', 'agov_menu_block-sidebar', $themes, 'sidebar_first', -50);
 
   // Set some blocks in the admin theme.
   agov_core_insert_block('system', 'main', AGOV_DEFAULT_ADMIN_THEME, 'content');
@@ -643,8 +640,6 @@ function _agov_default_blocks() {
  * Insert the twitter block.
  */
 function _agov_twitter_block() {
-  // Get all the aGov supported themes.
-  $themes = agov_supported_themes();
 
   $data = array(
     "theme" => "",
@@ -665,16 +660,13 @@ function _agov_twitter_block() {
     "polite" => "polite",
   );
 
-  $bid = db_insert('twitter_block')
+  db_insert('twitter_block')
     ->fields(array(
       'info' => 'Twitter Feed',
       'widget_id' => AGOV_TWITTER_WIDGET_ID,
       'data' => serialize($data),
     ))
     ->execute();
-
-  agov_core_insert_block('twitter_block', $bid, $themes, 'sidebar_second', -49);
-
 }
 
 /**
@@ -867,38 +859,11 @@ function _agov_default_variables() {
 }
 
 /**
- * Set default menu items.
- */
-function _agov_set_menu() {
-
-  // Create a Home link in the main menu.
-  $item = array(
-    'link_title' => st('Home'),
-    'link_path' => '<front>',
-    'menu_name' => 'main-menu',
-    'weight' => -50,
-  );
-  menu_link_save($item);
-
-  menu_rebuild();
-}
-
-/**
  * Setup beans.
  */
 function _agov_default_beans() {
   // If functionality available. Create some blocks.
   if (function_exists('agov_core_save_bean')) {
-    // Create the front page block.
-    $fields = array(
-      'field_bean_body' => array(
-        '0' => array(
-          'value' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque non faucibus massa. Maecenas ac dui turpis. Vivamus eu arcu tellus. Nunc sit amet tellus nunc. Quisque ac lacus nisl. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer consectetur, urna vitae posuere varius, sem enim blandit augue, non condimentum dolor tortor id quam. Quisque venenatis dolor neque. Nunc suscipit sem id neque lobortis ullamcorper. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.<br/><a href="about-us">Learn more about us &raquo;</a>',
-          'format' => 'rich_text',
-        ),
-      ),
-    );
-    agov_core_save_bean('basic_content', 'About Us', 'Provides "About Us" block for the from page.', 'About Us', $fields);
 
     // Create the footer block.
     $this_year = date('Y');
