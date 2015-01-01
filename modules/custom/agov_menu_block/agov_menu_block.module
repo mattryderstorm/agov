@@ -36,7 +36,7 @@ function agov_menu_block_menu_block_blocks() {
     'agov_menu_block-sidebar' => array(
       'menu_name'   => 'main-menu',
       'parent_mlid' => 0,
-      'title_link'  => 0,
+      'title_link'  => 1,
       'admin_title' => '',
       'level'       => 2,
       'follow'      => 0,
@@ -45,4 +45,17 @@ function agov_menu_block_menu_block_blocks() {
       'sort'        => 0,
     ),
   );
+}
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function agov_menu_block_block_view_alter(&$data, $block) {
+  if ($block->module == 'menu_block'  && $block->delta == 'agov_menu_block-sidebar') {
+    // Display the sidebar menu even if there are no children. We can hide it
+    // via the UI if we don't want it.
+    if (variable_get('agov_always_show_menu', TRUE) == TRUE && empty($data['content'])) {
+      $data['content'] = '&nbsp;';
+    }
+  }
 }

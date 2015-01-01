@@ -4,8 +4,11 @@
       background: $color-primary;
       @include background-image(linear-gradient(lighten($color-primary, 5%), $color-primary));
       @include adjust-font-size-to(16px);
-      color: white;
-      padding: 0 0 0 20px;
+      color: #fff;
+      padding: 0 0 0 rhythm(0.6);
+      a {
+        @include link-colors(#fff);
+      }
     }
     .block__content {
       background: $color-tertiary-light;
@@ -35,8 +38,10 @@
   margin: -15px; //ignore parent spacing
 }
 
-.menu-block-agov_menu_block-sidebar .menu {
-  @extend %linksDoubleArrow;
-  a { background-position: 15px center; }
-  @extend %linksTabbed;
+.menu-block-agov_menu_block-sidebar {
+  .menu {
+    @extend %linksDoubleArrow;
+    a { background-position: 15px center; }
+    @extend %linksTabbed;
+  }
 }
