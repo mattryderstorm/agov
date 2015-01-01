@@ -1,24 +1,23 @@
-@mixin paragraph-base {
+@mixin paragraph-tile {
   box-sizing: border-box;
   width: 100%;
-  margin-bottom: rhythm(0.5);
-}
-
-@mixin paragraph-tile {
-  @include paragraph-base;
-
-  padding: rhythm(0.5);
   float: left;
-  border: 1px solid #ddd;
-  margin-left: rhythm(0.5);
-  margin-right: rhythm(0.5);
-  margin-bottom: rhythm(0.5);
 
-  &:first-child {
-    margin-left: 0;
-  }
-  &:last-child {
-    margin-right: 0;
+  @include bp-nq($medium) {
+
+    padding: rhythm(0.5);
+    margin-left: rhythm(0.5);
+    margin-right: rhythm(0.5);
+    margin-bottom: rhythm(0.5);
+
+    &:first-child {
+      margin-left: 0;
+      padding-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+      padding-right: 0;
+    }
   }
 }
 
@@ -45,7 +44,11 @@
 
 // Base paragraph item styles.
 .entity-paragraphs-item {
-  @include paragraph-base;
+
+  float: left;
+  clear: left;
+  width: 100%;
+  padding-bottom: rhythm(0.5);
 
   h1, h2, h3, h4, h5, h6 {
     @include paragraph-title-reset();
@@ -56,15 +59,20 @@
     // the total margin burden.
     margin-top: rhythm(0.1);
     margin-bottom: rhythm(0.1);
+    float: left;
+    clear: left;
+    width: 100%;
   }
+}
+
+.field-type-paragraphs {
+  margin: 0;
 }
 
 // Paragraph tile styles.
 .paragraphs-item_view-mode_tile-text,
 .paragraphs-item_view-mode_tile-image {
-  @include paragraph-base;
   @include paragraph-tile;
-
 }
 
 // Paragraph teaser styles.
@@ -83,23 +91,31 @@
       float: none;
     }
     .field-name-field-pbundle-image {
-      width: 35%;
-      margin-right: rhythm(1);
+      @include field-image-left-float;
     }
     .field-name-field-pbundle-text {
-      width: 60%;
+      @include field-text-right-float;
     }
   }
 }
 
-.paragraphs--layout-tiles-2 > .field > .field-items > .field-item {
+.paragraphs-layout__tiles-2 {
+  > .field > .field-items > .field-item {
 
-  @include paragraph-tile();
-  @include paragraph-tile-medium();
+    @include paragraph-tile();
+    @include paragraph-tile-medium();
+  }
+
+  &.field-type-viewfield {
+    .views-row {
+      @include paragraph-tile();
+      @include paragraph-tile-medium();
+    }
+  }
 }
 
-.paragraphs--layout-tiles-3 > .field > .field-items > .field-item {
 
+%paragraphs-layout__tiles-3 {
   @include paragraph-tile();
   @include paragraph-tile-medium();
 
@@ -123,8 +139,19 @@
   }
 }
 
-.paragraphs--layout-tiles-4 > .field > .field-items > .field-item {
+.paragraphs-layout__tiles-3 {
+  > .field > .field-items > .field-item {
+    @extend %paragraphs-layout__tiles-3;
+  }
 
+  &.field-type-viewfield {
+    .views-row {
+      @extend %paragraphs-layout__tiles-3;
+    }
+  }
+}
+
+%paragraphs-layout__tiles-4 {
   @include paragraph-tile();
   @include paragraph-tile-medium();
 
@@ -144,6 +171,21 @@
     }
     &:nth-child(5) {
       margin-left: 0;
+    }
+  }
+}
+
+.paragraphs-layout__tiles-4 {
+  > .field > .field-items > .field-item {
+    @extend %paragraphs-layout__tiles-4;
+  }
+  &.field-type-viewfield {
+    .view-content {
+      width: 100%;
+      clear: left;
+    }
+    .views-row {
+      @extend %paragraphs-layout__tiles-4;
     }
   }
 }

@@ -29,6 +29,8 @@
 /* Component (SMACSS module) rules */
 @import "components/*";
 
+@import "paragraphs/*";
+
 // Sections - This is where section specific non-modular styles go. You will not find yourself duplicating these styles.
 @import "sections/*";
 

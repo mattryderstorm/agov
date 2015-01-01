@@ -1,0 +1,28 @@
+.paragraphs-item-view {
+  .view .more-link {
+    width: 100%;
+    clear: left;
+  }
+}
+
+.field-type-viewfield {
+
+  &.paragraphs-layout__tiles-2 {
+    .views-row {
+      @include paragraph-tile();
+      @include paragraph-tile-medium();
+    }
+  }
+
+  &.paragraphs-layout__tiles-3 {
+    .views-row {
+      @extend %paragraphs-layout__tiles-3;
+    }
+  }
+
+  &.paragraphs-layout__tiles-4 {
+    .views-row {
+      @extend %paragraphs-layout__tiles-4;
+    }
+  }
+}
