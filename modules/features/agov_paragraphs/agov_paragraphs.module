@@ -36,25 +36,50 @@ function agov_paragraphs_entity_info_alter(&$entity_info) {
  * Implements hook_entity_view().
  */
 function agov_paragraphs_entity_view($entity, $type, $view_mode, $langcode) {
+  $entity_classes = array();
 
   if ($type == 'paragraphs_item') {
 
+    // Ensure every paragraph gets a unique identifying class, just in case.
+    $entity_classes[] = 'paragraphs-item__' . drupal_html_class($entity->item_id);
+
+    // Process any paragraphs with class settings.
+    // These come from the field "field_pbundle_css_classes".
+    if (isset($entity->field_pbundle_css_classes[LANGUAGE_NONE][0]['value']) && !empty($entity->field_pbundle_css_classes[LANGUAGE_NONE][0]['value'])) {
+      $entity_classes[] = check_plain($entity->field_pbundle_css_classes[LANGUAGE_NONE][0]['value']);
+    }
+
     // Process any Paragraphs with layout settings.
+    // These come from the field "field_pbundle_section_layout".
     if (isset($entity->field_pbundle_section_layout[LANGUAGE_NONE][0]) && !empty($entity->field_pbundle_section_layout[LANGUAGE_NONE][0])) {
 
       // Section arrangements are defined by the Arrangement entity.
       $arrangements = entity_load('arrangement', array($entity->field_pbundle_section_layout[LANGUAGE_NONE][0]['target_id']));
       $arrangement = reset($arrangements);
-      $entity->content['#attributes']['class'][] = 'paragraphs--layout-' . check_plain($arrangement->field_machine_name[LANGUAGE_NONE][0]['value']);
 
+      $layout_class = 'paragraphs-layout__' . drupal_html_class($arrangement->field_machine_name[LANGUAGE_NONE][0]['value']);
+
+      // Any other usage should apply to the root element. This may not work
+      // in any given case, since the element children may not be the right
+      // kind to get the layout classes.
       if ($entity->bundle == 'section') {
-        // Add a class for styling the content.
-        $entity->content['field_pbundle_section_content']['#attributes']['class'][] = 'paragraphs--layout-' . check_plain($arrangement->field_machine_name[LANGUAGE_NONE][0]['value']);
+        // Sections apply layout to the section_content field.
+        $entity->content['field_pbundle_section_content']['#attributes']['class'][] = $layout_class;
+        unset($layout_class);
       }
-      if ($entity->bundle == 'view') {
-        $entity->content['field_pbundle_view']['#attributes']['class'][] = 'paragraphs--layout-' . check_plain($arrangement->field_machine_name[LANGUAGE_NONE][0]['value']);
+      elseif ($entity->bundle == 'view') {
+        // Views apply layout to the view field.
+        $entity->content['field_pbundle_view']['#attributes']['class'][] = $layout_class;
+        unset($layout_class);
       }
     }
+
+    // Assign any remaining classes to the content(main) element.
+    if (isset($layout_class) && !empty($layout_class)) {
+      $entity_classes = array_merge($entity_classes, $layout_class);
+    }
+    $final_classes = implode(' ', $entity_classes);
+    $entity->content['#attributes']['class'][] = $final_classes;
   }
 }
 
@@ -69,16 +94,7 @@ function agov_paragraphs_preprocess_paragraphs_items(&$variables, $hook) {
   $variables['classes_array'][] = 'paragraphs-items_view-mode_' . drupal_html_class($variables['view_mode']);
 
   // Paragraphs doesn't properly add the element classes.
-  if (isset($variables['element']['#attributes']['class'])
-    && !empty($variables['element']['#attributes']['class'])
-    && is_array($variables['element']['#attributes']['class'])
-  ) {
-    foreach ($variables['element']['#attributes']['class'] as $class_name) {
-      if (!isset($variables['classes_array'][$class_name])) {
-        $variables['classes_array'][] = drupal_html_class($class_name);
-      }
-    }
-  }
+  _agov_paragraphs_set_classes($variables, 'element');
 }
 
 /**
@@ -94,16 +110,40 @@ function agov_paragraphs_preprocess_entity(&$variables) {
     $variables['classes_array'][] = 'paragraphs-item_view-mode_' . drupal_html_class($variables['view_mode']);
 
     // Paragraphs doesn't properly add the element classes.
-    if (isset($variables['element']['#attributes']['class'])
-      && !empty($variables['element']['#attributes']['class'])
-      && is_array($variables['element']['#attributes']['class'])
-    ) {
-      foreach ($variables['element']['#attributes']['class'] as $class_name) {
-        if (!isset($variables['classes_array'][$class_name])) {
-          $variables['classes_array'][] = drupal_html_class($class_name);
-        }
+    _agov_paragraphs_set_classes($variables, 'elements');
+  }
+}
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function agov_paragraphs_preprocess_field(&$variables) {
+
+  if ($variables['element']['#field_name'] == 'field_pbundle_view') {
+
+    // Add the layout classes.
+    _agov_paragraphs_set_classes($variables, 'element');
+  }
+}
+
+/**
+ * Private helper to set class names on an element.
+ *
+ * @param array $variables
+ *   The array of variables
+ * @param string $element_kind
+ *   The element kind. Should usually be 'element' or 'elements'.
+ */
+function _agov_paragraphs_set_classes(&$variables, $element_kind) {
+
+  if (isset($variables[$element_kind]['#attributes']['class'])
+    && !empty($variables[$element_kind]['#attributes']['class'])
+    && is_array($variables[$element_kind]['#attributes']['class'])
+  ) {
+    foreach ($variables[$element_kind]['#attributes']['class'] as $class_name) {
+      if (!isset($variables['classes_array'][$class_name])) {
+        $variables['classes_array'][] = $class_name;
       }
     }
   }
-
 }

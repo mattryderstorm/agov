@@ -32,6 +32,37 @@ function agov_paragraphs_field_default_field_bases() {
     'type' => 'blockreference',
   );
 
+  // Exported field_base: 'field_pbundle_css_classes'
+  $field_bases['field_pbundle_css_classes'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_pbundle_css_classes',
+    'foreign keys' => array(
+      'format' => array(
+        'columns' => array(
+          'format' => 'format',
+        ),
+        'table' => 'filter_format',
+      ),
+    ),
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 511,
+      'required_summary' => 0,
+      'show_summary' => 0,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
   // Exported field_base: 'field_pbundle_destination'
   $field_bases['field_pbundle_destination'] = array(
     'active' => 1,
@@ -99,7 +130,14 @@ function agov_paragraphs_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_pbundle_node',
-    'foreign keys' => array(),
+    'foreign keys' => array(
+      'node' => array(
+        'columns' => array(
+          'target_id' => 'nid',
+        ),
+        'table' => 'node',
+      ),
+    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -161,7 +199,14 @@ function agov_paragraphs_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_pbundle_section_layout',
-    'foreign keys' => array(),
+    'foreign keys' => array(
+      'eck_arrangement' => array(
+        'columns' => array(
+          'target_id' => 'id',
+        ),
+        'table' => 'eck_arrangement',
+      ),
+    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
