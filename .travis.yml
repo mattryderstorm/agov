@@ -20,7 +20,7 @@ before_install:
   - sudo apt-get update > /dev/null
 
 install:
-  - ls -l /home/travis
+  - ls -l /home/
 
   # Update composer
   - composer selfupdate
