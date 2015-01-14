@@ -22,6 +22,7 @@ before_install:
 install:
   - sudo mkdir -p /home/travis/.composer
   - sudo chown -R travis:travis /home/travis
+  - sudo chown -R travis:travis `pwd`
   - ls -l /home/
 
   - ls -l
