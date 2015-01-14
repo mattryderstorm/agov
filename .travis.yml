@@ -25,7 +25,7 @@ install:
   - ls -l /home/
 
   # Update composer
-  - sudo composer selfupdate
+  # - sudo composer selfupdate
 
   # install php packages required for running a web server from drush on php 5.3
   - sudo apt-get install -y --force-yes php5-cgi php5-mysql
