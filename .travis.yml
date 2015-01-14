@@ -20,15 +20,10 @@ before_install:
   - sudo apt-get update > /dev/null
 
 install:
-  - sudo mkdir -p /home/travis/.composer
-  - sudo chown -R travis:travis /home/travis
-  - sudo chown -R travis:travis `pwd`
-  - ls -l /home/
-
-  - ls -l
+  - sudo su
 
   # Update composer
-  # - sudo composer selfupdate
+  - sudo composer selfupdate
 
   # install php packages required for running a web server from drush on php 5.3
   - sudo apt-get install -y --force-yes php5-cgi php5-mysql
