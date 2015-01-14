@@ -24,6 +24,8 @@ install:
   - sudo chown -R travis:travis /home/travis
   - ls -l /home/
 
+  - ls -l
+
   # Update composer
   # - sudo composer selfupdate
 
