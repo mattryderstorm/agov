@@ -21,6 +21,7 @@ before_install:
 
 install:
   - sudo mkdir -p /home/travis/.composer
+  - sudo chown -R travis:travis /home/travis
   - ls -l /home/
 
   # Update composer
